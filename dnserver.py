@@ -117,10 +117,21 @@ class Resolver(ProxyResolver):
     def resolve(self, request, handler):
         type_name = QTYPE[request.q.qtype]
         reply = request.reply()
+        
+        if request.q.qname == DNSLabel("myip.opendns.com") and (request.q.qtype == QTYPE.ANY or type_name == 'A'):
+            args = (handler.client_address[0],)
+            rr = RR(
+                rname="myip.opendns.com",
+                rtype=QTYPE.A,
+                rdata=dns.A(*args),
+                ttl=60,
+            )
+            reply.add_answer(rr)
+
         for record in self.records:
             if record.match(request.q):
                 reply.add_answer(record.rr)
-
+        
         if reply.rr:
             logger.info('found zone for %s[%s], %d replies', request.q.qname, type_name, len(reply.rr))
             return reply

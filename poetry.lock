@@ -1,0 +1,17 @@
+[[package]]
+name = "dnslib"
+version = "0.9.7"
+description = "Simple library to encode/decode DNS wire-format packets"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "53cbf2a49c425bda69a1b130ebb43ef48b61ece1fa96f4d1d13d179b2fdf19d4"
+
+[metadata.files]
+dnslib = [
+    {file = "dnslib-0.9.7.tar.gz", hash = "sha256:2973fefc1527cd77d07f140b9dc46221384542c233c6013a0ca779b8e07f1c8a"},
+]
